@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+
+	const [showDropdown, setshowDropdown] = useState(false);
+
+	const [clickDropdown, setClickDropdown] = useState(false);
+	let show = "";
+	if (clickDropdown) show = "show";
+
 	return (
 		<div>
 			<nav className="navbar navbar-dark bg-dark row">
@@ -21,13 +29,37 @@ export const Navbar = () => {
 					INTERACTIVE
 				</a>
 
-				<form className="form-inline col-2">
-					<div>
-						<button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-							Favorites
-						</button>
+				<a className={"nav-item dropdown " + (showDropdown ? "show" : "")}>
+					<button
+						className="faves btn btn-outline-dark nav-link dropdown-toggle"
+						href="#"
+						id="navbarDropdown"
+						role="button"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded={clickDropdown}
+						onClick={() => setClickDropdown(!clickDropdown)}>
+						FAVORITES <span className="badge badge-secondary">{store.favorites.length}</span>
+					</button>
+					<div
+						className={store.favorites.length > 0 ? "dropdown-menu " + show : "d-none"}
+						aria-labelledby="navbarDropdown">
+						{store.favorites.length > 0
+							? store.favorites.map((elm, index) => (
+									<li
+										key={index}
+										className="dropdown-item d-flex align-items-center justify-content-between">
+										<Link to={`/details/${index + 1}`}>{elm.name}</Link>
+										&nbsp;&nbsp;
+										<i
+											className="fas fa-backspace"
+											onClick={() => actions.deleteFromFavorites(elm)}
+										/>
+									</li>
+							  ))
+							: null}
 					</div>
-				</form>
+				</a>
 			</nav>
 		</div>
 	);

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
 export const Character = props => {
+	const { store, actions } = useContext(Context);
+
+	const found = store.favorites.find(element => element.name == props.char.name);
+
 	return (
 		<div className="d-inline-flex ">
 			{/* post */}
-			<div id="Character" className="card  mt-5 bg-dark " style={{ width: "18rem" }}>
+			<div id="Character" className="card  mt-5" style={{ width: "18rem" }}>
 				<img className="card-img-top" src="" alt="Card image cap" />
 				<div className="card-body">
 					<h5 className="card-title">{props.char.name}</h5>
@@ -28,13 +32,17 @@ export const Character = props => {
 										character: props.char
 									}
 								}}>
-								<button href="#" className="btn  btn-outline-primary">
+								<button href="#" className="btn   btn-outline-dark">
 									Learn more!
 								</button>
 							</Link>
 						</div>
-						<div className="heartbox ">
-							<i className="fas fa-heart-broken" />
+						<div className="heartbox btn-outline-dark ">
+							<button
+								className="btnHeart "
+								onClick={found ? null : () => actions.addFavorites(props.char.name)}>
+								<i className="fas fa-heart" />
+							</button>
 						</div>
 					</div>
 				</div>

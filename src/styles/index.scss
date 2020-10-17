@@ -22,17 +22,21 @@ body{
 }
 
 */
+  
+
+body{
+ 
+    background-image:  url(https://d13ezvd6yrslxm.cloudfront.net/wp/wp-content/images/starwars-battlefront4-conceptart-darkmace1.jpg); 
+     background-position: center;
+   
+}
+  
+
 .scroll{
+    justify-content: center;
     overflow-x: scroll;
 }
 
-
-#headline{
-
-    width: 250px;
-
-
-}
 
 
 #Search{
@@ -47,10 +51,30 @@ body{
 }
 
 .fas{
-    border: 1px solid white;
-    color: yellow;
+   
+    color: gray;
     margin-top: 5px;
     height: 36px;
     width: 30px;
 
+}
+.card{
+    background-color: black;
+    border-radius: 5px;
+}
+
+.card-text{
+    
+    color: white;
+}
+
+.btnHeart{
+    background: black;
+    border: 1px solid black;
+    height: 50px;
+    width: 50px
+}
+
+.btn{
+    color: white;
 }
