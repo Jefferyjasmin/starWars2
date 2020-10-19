@@ -20,7 +20,7 @@ export const Planet = props => {
 						<div className="learnMore  ">
 							<Link
 								to={{
-									pathname: `/details/${props.index + 1}`,
+									pathname: `/planetdetails/${props.index + 1}`,
 									state: {
 										planet: props.plan
 									}
@@ -48,6 +48,6 @@ Planet.propTypes = {
 	name: PropTypes.string,
 	population: PropTypes.string,
 	terrain: PropTypes.string,
-	plan: PropTypes.string,
+	plan: PropTypes.object,
 	index: PropTypes.number
 };
