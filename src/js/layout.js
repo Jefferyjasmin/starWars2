@@ -20,9 +20,9 @@ const Layout = () => {
 
 	return (
 		<div className="d-flex flex-column h-100">
-			<Navbar />
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
+					<Navbar />
 					<Switch>
 						<Route exact path="/">
 							<Home />
